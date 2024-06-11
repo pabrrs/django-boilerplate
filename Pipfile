@@ -1,0 +1,45 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+requests = "*"
+psycopg2 = "*"
+djangorestframework-simplejwt = "*"
+dj-database-url = "*"
+django-health-check = "*"
+python-dotenv = "*"
+django-storages = "*"
+boto3 = "*"
+django-s3-sqlite = "*"
+django-admin-multi-select-filter = "*"
+tzdata = "*"
+django-import-export = {extras = ["all"], version = "*"}
+
+[dev-packages]
+pylint = "*"
+pylint-django = "*"
+black = "*"
+autopep8 = "*"
+coverage = "*"
+isort = "*"
+pre-commit = "*"
+
+[scripts]
+build = "./scripts/build.sh"
+check = "./scripts/check.sh"
+format = "./scripts/format.sh"
+format-check = "./scripts/format-check.sh"
+health = "./scripts/health.sh"
+lint = "./scripts/lint.sh"
+up = "./scripts/up.sh"
+test = "./scripts/test.sh"
+makem = "./scripts/makem.sh"
+
+[requires]
+python_version = "3.11.7"

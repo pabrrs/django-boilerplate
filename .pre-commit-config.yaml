@@ -1,0 +1,35 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+# custom hooks
+-   repo: local
+    hooks:
+    -   id: run-linter
+        name: Run linter (pipenv run lint)
+        entry: pipenv run lint
+        language: python
+        verbose: true
+
+    -   id: run-formatter
+        name: Run formatter (pipenv run format)
+        entry: pipenv run format
+        language: python
+        verbose: true
+
+    -   id: run-tests
+        name: Run tests (pipenv run test)
+        entry: pipenv run test
+        language: python
+
+    -   id: run-health
+        name: Run health (pipenv run health)
+        entry: pipenv run health
+        language: python
+        verbose: true

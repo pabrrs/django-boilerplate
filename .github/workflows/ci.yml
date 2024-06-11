@@ -1,0 +1,34 @@
+name: Run CI
+
+on: [pull_request, workflow_call]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: pipenv
+
+      - name: Build django-app
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          pipenv run build
+
+      - name: Run tests
+        run: pipenv run test
+
+      - name: Run health check
+        run: pipenv run health
+
+      - name: Run linter
+        run: pipenv run lint
+
+      - name: Run formatter check
+        run: pipenv run format-check

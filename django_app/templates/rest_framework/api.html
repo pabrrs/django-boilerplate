@@ -1,0 +1,20 @@
+{% extends "rest_framework/base.html" %}
+{% load static %}
+
+{% block userlinks %}
+    <li class="nav-item">
+        <a class='nav-link' target="_blank" href="">Acesse no Github</a>
+    </li>
+{% endblock userlinks %}
+
+
+{% block branding %}
+<a class='navbar-brand' href="/api/">
+    <div>
+        <img src="{% static 'favicon.svg' %}" width="20" height="20" alt="contrate quem luta">
+        <span>
+            Django APP
+        </span>
+    </div>
+</a>
+{% endblock branding %}

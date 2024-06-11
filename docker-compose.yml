@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:14.2
+    restart: always
+    hostname: django_app
+    environment:
+      POSTGRES_PASSWORD: django_app
+      POSTGRES_USER: django_app
+      POSTGRES_DB: django_app
+        # for compatibility with OS user
+      PGUSER: django_app
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ['CMD', 'pg_isready']
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+  api:
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    environment:
+      DJANGO_SETTINGS_MODULE: django_app.settings.docker
+      DJANGO_APP_DB_URI: postgresql://django_app:django_app@django_app:5432/django_app
+      APP_PORT: 8888
+    expose:
+      - 8888
+    env_file: .env
+    volumes:
+      - .:/code
+    ports:
+      - 8888:8888
+    links:
+      - postgres:django_app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8888/health?format=json']
+      interval: 1m
+      timeout: 30s
+      retries: 3
+    restart: always

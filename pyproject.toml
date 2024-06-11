@@ -1,0 +1,44 @@
+[tool.black]
+line-length=180
+target-version=['py39']
+
+[tool.pylint]
+[tool.pylint.'MASTER']
+# Files to ignore by linter
+ignore=['migrations']
+load-plugins=['pylint_django']
+django-settings-module=['django_app.settings.dev']
+
+[tool.pylint.'BASIC']
+# Good variable names which should always be accepted, separated by a comma
+good-names=['setUpClass','tearDownClass']
+
+[tool.pylint.'MESSAGE CONTROL']
+# C0111: Missing docstring
+# R0801: duplicate-code
+# R0903: Too few public methods
+# R0901: Too many ancestors
+disable=['C0111,R0801,R0901,R0903']
+
+[tool.pylint.'DESIGN']
+# R0901: Too many ancestors
+max-parents=15
+
+[tool.pylint.'REPORTS']
+# Set the output format. Available formats are text, parseable, colorized, msvs
+# (visual studio) and html
+output-format=['colorized']
+
+[tool.pylint.'FORMAT']
+max-line-length=180
+
+[tool.autopep8]
+max-line-length=180
+recursive=1
+
+[tool.coverage.run]
+omit=['*migrations*']
+
+[tool.isort]
+skip=['migrations']
+line_length=180
