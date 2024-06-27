@@ -35,7 +35,7 @@ integrationRouter = routers.DefaultRouter()
 # Admin customization
 admin.site.site_title = "Django App"
 admin.site.site_header = "Django App"
-admin.site.index_title = "Contrate Quem Luta"
+admin.site.index_title = "Django"
 
 urlpatterns = [
     path("health/", include(health_check_urls)),
